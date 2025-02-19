@@ -1,7 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { MatGridList, MatGridTile } from '@angular/material/grid-list';
 import { NgOptimizedImage } from '@angular/common'
-import {MatButtonModule} from '@angular/material/button';
 import {MatCardModule} from '@angular/material/card';
 import {
   CdkDragDrop,
@@ -21,8 +19,6 @@ export interface SortedAnime {
 @Component({
   selector: 'app-selector',
   imports: [
-    MatGridList,
-    MatGridTile,
     CdkDrag,
     CdkDropList,
     CdkDropListGroup,

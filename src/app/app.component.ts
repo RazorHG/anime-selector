@@ -8,6 +8,7 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import { Seasons } from './core/seasons';
 import { AnimeBase, MyAnimeListService } from './core/myanimelist.service';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ import { AnimeBase, MyAnimeListService } from './core/myanimelist.service';
     MatSelectModule,
     MatFormFieldModule,
     MatButtonModule,
+    TitleCasePipe,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'

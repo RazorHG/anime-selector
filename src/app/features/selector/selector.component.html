@@ -1,59 +1,61 @@
-<mat-grid-list class="anime-selector" cdkDropListGroup cols="2" rowHeight="600px" gutterSize="10px">
-    <mat-grid-tile
+<div class="anime-selector" cdkDropListGroup>
+    <h2>Anime</h2>
+    <div
         cdkDropList
         [cdkDropListData]="unsortedItems"
-        colspan="2"
-        rowspan="1"
         (cdkDropListDropped)="drop($event)"
-        cdkDropListOrientation="mixed"
+        cdkDropListOrientation="horizontal"
+        class="unsorted-items"
     >
-    @for (item of unsortedItems; track item) {
-        <mat-card cdkDrag class="example-card" appearance="outlined">
-            <mat-card-header>
-              <mat-card-title class="anime-card-title" >
-                <a href="https://myanimelist.net/anime/{{ item.id }}" target="_blank">{{ item.title }}</a>
-            </mat-card-title>
-            </mat-card-header>
-            <img
-                mat-card-image
-                ngSrc="{{ item.main_picture.medium }}"
-                alt="Image of {{ item.title }}"
-                width="198"
-                height="250"
-            >
-          </mat-card>
-    }
-    </mat-grid-tile>
-    <mat-grid-tile
+        @for (item of unsortedItems; track item) {
+            <mat-card cdkDrag class="example-card" appearance="outlined">
+                <mat-card-header>
+                <mat-card-title class="anime-card-title" >
+                    <a href="https://myanimelist.net/anime/{{ item.id }}" target="_blank">{{ item.title }}</a>
+                </mat-card-title>
+                </mat-card-header>
+                <img
+                    mat-card-image
+                    ngSrc="{{ item.main_picture.medium }}"
+                    alt="Image of {{ item.title }}"
+                    width="173"
+                    height="150"
+                >
+            </mat-card>
+        }
+    </div>
+    <h2>Will Watch</h2>
+    <div
         cdkDropList
         [cdkDropListData]="willWatchItems"
-        colspan="1"
-        rowspan="3"
         (cdkDropListDropped)="drop($event)"
+        cdkDropListOrientation="horizontal"
+        class="will-watch-items"
     >
-    @for (item of willWatchItems; track item) {
-        <mat-card cdkDrag class="example-card" appearance="outlined">
-            <mat-card-header>
-              <mat-card-title class="anime-card-title" >
-                <a href="https://myanimelist.net/anime/{{ item.id }}" target="_blank">{{ item.title }}</a>
-            </mat-card-title>
-            </mat-card-header>
-            <img
-                mat-card-image
-                ngSrc="{{ item.main_picture.medium }}"
-                alt="Image of {{ item.title }}"
-                width="198"
-                height="250"
-            >
-          </mat-card>
-    }
-    </mat-grid-tile>
-    <mat-grid-tile
+        @for (item of willWatchItems; track item) {
+            <mat-card cdkDrag class="example-card" appearance="outlined">
+                <mat-card-header>
+                <mat-card-title class="anime-card-title" >
+                    <a href="https://myanimelist.net/anime/{{ item.id }}" target="_blank">{{ item.title }}</a>
+                </mat-card-title>
+                </mat-card-header>
+                <img
+                    mat-card-image
+                    ngSrc="{{ item.main_picture.medium }}"
+                    alt="Image of {{ item.title }}"
+                    width="173"
+                    height="150"
+                >
+            </mat-card>
+        }
+    </div>
+    <h2>Won't Watch</h2>
+    <div
         cdkDropList
         [cdkDropListData]="wontWatchItems"
-        colspan="1"
-        rowspan="3"
         (cdkDropListDropped)="drop($event)"
+        cdkDropListOrientation="horizontal"
+        class="wont-watch-items"
     >
     @for (item of wontWatchItems; track item) {
         <mat-card cdkDrag class="example-card" appearance="outlined">
@@ -66,10 +68,10 @@
                 mat-card-image
                 ngSrc="{{ item.main_picture.medium }}"
                 alt="Image of {{ item.title }}"
-                width="198"
-                height="250"
+                width="173"
+                height="150"
             >
           </mat-card>
     }
-    </mat-grid-tile>
-</mat-grid-list>
+    </div>
+</div>

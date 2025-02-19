@@ -1,23 +1,37 @@
 .example-card {
-    width: 200px;
-    min-height: 300px;
+    width: 175px;
     margin: 10px;
     .anime-card-title {
         font-size: small;
     }
 }
 
-mat-grid-tile {
+.anime-selector {
     display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: column;
     flex-wrap: wrap;
-    width: 1200px;
+}
 
+.unsorted-items, .wont-watch-items, .will-watch-items{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow: auto;
+    width: 100%;
+}
+
+mat-card{
+    height: 223px;
 }
 
 mat-card-header {
     height: 60px;
 }
 
-mat-grid-list {
-    display: flex;
+h2 {
+    margin-left: 5px;
+    color: azure;
+    font-family: 'Courier New', Courier, monospace;
 }
