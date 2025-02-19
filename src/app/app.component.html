@@ -1,7 +1,8 @@
-<form class="toolbar">
+<form [formGroup]="queryForm" class="toolbar">
+  <h1>Anime Smash or Pass</h1>
   <mat-form-field>
     <mat-label>Year</mat-label>
-    <mat-select [(ngModel)]="selectedYear" name="year">
+    <mat-select formControlName="selectedYear" name="selectedYear">
       @for (year of years; track year) {
         <mat-option [value]="year">{{ year }}</mat-option>
       }
@@ -9,15 +10,15 @@
   </mat-form-field>
   <mat-form-field>
     <mat-label>Season</mat-label>
-    <mat-select [(ngModel)]="selectedSeason" name="season">
+    <mat-select formControlName="selectedSeason" name="selectedSeason">
       @for (season of seasons; track season) {
         <mat-option [value]="season">{{ season | titlecase }}</mat-option>
       }
     </mat-select>
   </mat-form-field>
   <button (click)="loadAnime()" mat-flat-button>Get Anime</button>
-  <button (click)="loadAnime()" mat-flat-button>Save Anime to MAL</button>
+  <button [disabled]="queryForm.get('updates')?.hasError" (click)="saveAnime()" mat-flat-button>Save Anime to MAL</button>
 </form>
-<app-selector [unsortedItems]="animeList" (sortedChangeEvent)="updateSortedAnime($event)" />
+<app-selector [ariaDisabled]="" [unsortedItems]="animeList" (sortedChangeEvent)="updateSortedAnime($event)" />
 
 <router-outlet />

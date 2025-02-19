@@ -18,9 +18,13 @@
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    overflow: auto;
+    // overflow-y:hidden;
+    overflow-x: auto;
     width: 100%;
+    // max-height: 260px;
+    min-height: 220px;
 }
+
 
 mat-card{
     height: 223px;
@@ -33,5 +37,12 @@ mat-card-header {
 h2 {
     margin-left: 5px;
     color: azure;
-    font-family: 'Courier New', Courier, monospace;
+}
+
+a {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
 }

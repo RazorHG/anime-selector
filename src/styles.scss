@@ -1,4 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-image: url("./assets/background.jpg"); }
+body {
+    margin: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background-image: url("./assets/background.jpg");
+}
+
+a {
+    font-family: 'Courier New', Courier, monospace;
+}
