@@ -1,4 +1,22 @@
-
-<app-selector />
+<form>
+  <mat-form-field>
+    <mat-label>Year</mat-label>
+    <mat-select [(ngModel)]="selectedYear" name="year">
+      @for (year of years; track year) {
+        <mat-option [value]="year">{{year}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Season</mat-label>
+    <mat-select [(ngModel)]="selectedSeason" name="season">
+      @for (season of seasons; track season) {
+        <mat-option [value]="season">{{season}}</mat-option>
+      }
+    </mat-select>
+  </mat-form-field>
+  <button (click)="loadAnime()" mat-flat-button>Get Anime</button>
+</form>
+<app-selector [unsortedItems]="animeList" (sortedChangeEvent)="updateSortedAnime($event)" />
 
 <router-outlet />

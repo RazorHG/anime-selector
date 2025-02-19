@@ -1,0 +1,23 @@
+.example-card {
+    width: 200px;
+    min-height: 300px;
+    margin: 10px;
+    .anime-card-title {
+        font-size: small;
+    }
+}
+
+mat-grid-tile {
+    display: flex;
+    flex-wrap: wrap;
+    width: 1200px;
+
+}
+
+mat-card-header {
+    height: 60px;
+}
+
+mat-grid-list {
+    display: flex;
+}

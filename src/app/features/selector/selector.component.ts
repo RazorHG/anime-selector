@@ -1,5 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { MatGridList, MatGridTile } from '@angular/material/grid-list';
+import { NgOptimizedImage } from '@angular/common'
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
 import {
   CdkDragDrop,
   CdkDrag,
@@ -8,7 +11,12 @@ import {
   moveItemInArray,
   transferArrayItem,
 } from '@angular/cdk/drag-drop';
+import { AnimeBase } from '../../core/myanimelist.service';
 
+export interface SortedAnime {
+  willWatch: AnimeBase[],
+  wonWatch: AnimeBase[],
+}
 
 @Component({
   selector: 'app-selector',
@@ -17,17 +25,21 @@ import {
     MatGridTile,
     CdkDrag,
     CdkDropList,
-    CdkDropListGroup
+    CdkDropListGroup,
+    MatCardModule,
+    NgOptimizedImage,
   ],
   templateUrl: './selector.component.html',
   styleUrl: './selector.component.scss'
 })
 export class SelectorComponent {
-  unsortedItems = ['item1', 'item2', 'item3', 'item4']
-  willWatchItems: Array<string> = [];
-  wontWatchItems: Array<string> = [];
+  @Input() unsortedItems: Array<AnimeBase> = [];
+  @Output() sortedChangeEvent = new EventEmitter<SortedAnime>()
 
-  drop(event: CdkDragDrop<string[]>) {
+  willWatchItems: Array<AnimeBase> = [];
+  wontWatchItems: Array<AnimeBase> = [];
+
+  drop(event: CdkDragDrop<AnimeBase[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
     } else {
@@ -38,5 +50,9 @@ export class SelectorComponent {
         event.currentIndex,
       );
     }
+    this.sortedChangeEvent.emit({
+      willWatch: this.willWatchItems,
+      wonWatch: this.wontWatchItems,
+    });
   }
 }

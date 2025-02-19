@@ -1,13 +1,27 @@
-<mat-grid-list cdkDropListGroup cols="2" rowHeight="100px">
+<mat-grid-list class="anime-selector" cdkDropListGroup cols="2" rowHeight="600px" gutterSize="10px">
     <mat-grid-tile
         cdkDropList
         [cdkDropListData]="unsortedItems"
         colspan="2"
-        rowspan="3"
+        rowspan="1"
         (cdkDropListDropped)="drop($event)"
+        cdkDropListOrientation="mixed"
     >
     @for (item of unsortedItems; track item) {
-        <div cdkDrag>{{item}}</div>
+        <mat-card cdkDrag class="example-card" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title class="anime-card-title" >
+                <a href="https://myanimelist.net/anime/{{ item.id }}" target="_blank">{{ item.title }}</a>
+            </mat-card-title>
+            </mat-card-header>
+            <img
+                mat-card-image
+                ngSrc="{{ item.main_picture.medium }}"
+                alt="Image of {{ item.title }}"
+                width="198"
+                height="250"
+            >
+          </mat-card>
     }
     </mat-grid-tile>
     <mat-grid-tile
@@ -18,7 +32,20 @@
         (cdkDropListDropped)="drop($event)"
     >
     @for (item of willWatchItems; track item) {
-        <div cdkDrag>{{item}}</div>
+        <mat-card cdkDrag class="example-card" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title class="anime-card-title" >
+                <a href="https://myanimelist.net/anime/{{ item.id }}" target="_blank">{{ item.title }}</a>
+            </mat-card-title>
+            </mat-card-header>
+            <img
+                mat-card-image
+                ngSrc="{{ item.main_picture.medium }}"
+                alt="Image of {{ item.title }}"
+                width="198"
+                height="250"
+            >
+          </mat-card>
     }
     </mat-grid-tile>
     <mat-grid-tile
@@ -29,7 +56,20 @@
         (cdkDropListDropped)="drop($event)"
     >
     @for (item of wontWatchItems; track item) {
-        <div cdkDrag>{{item}}</div>
+        <mat-card cdkDrag class="example-card" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title class="anime-card-title" >
+                <a href="https://myanimelist.net/anime/{{ item.id }}" target="_blank">{{ item.title }}</a>
+            </mat-card-title>
+            </mat-card-header>
+            <img
+                mat-card-image
+                ngSrc="{{ item.main_picture.medium }}"
+                alt="Image of {{ item.title }}"
+                width="198"
+                height="250"
+            >
+          </mat-card>
     }
     </mat-grid-tile>
 </mat-grid-list>
