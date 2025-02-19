@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable, Inject } from '@angular/core';
 import { Secrets, SECRETS } from './secrets.service';
 import { Seasons } from './seasons';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -16,8 +17,41 @@ export class MyAnimeListService {
     this.clientID = secrets.clientID;
     this.headers = new HttpHeaders().set('X-MAL-CLIENT-ID', this.clientID);
   }
-  getSeasonalAnime(year: number, season: Seasons) {
+  getSeasonalAnime(year: number, season: Seasons): Observable<SeasonalAnimeResponse> {
     const url = `${this.malURL}${year}/${season}`;
-    return this.httpClient.get(url, { headers: this.headers });
+    return this.httpClient.get<SeasonalAnimeResponse>(url, { headers: this.headers });
   }
 }
+
+type Paging = {
+  next: string; 
+};
+
+type PictureData = {
+  medium: string;
+  large: string;
+};
+
+type AnimeBase = {
+  id: number;
+  title: string;
+  main_picture: PictureData;
+};
+
+type AnimeNode = {
+  node: AnimeBase;
+};
+
+interface AnimeListResponse {
+  data: Array<AnimeNode>;
+  paging: Paging,
+}
+
+type SeasonalAnimeQuery = {
+  year: number;
+  season: Seasons;
+}
+
+export interface SeasonalAnimeResponse extends AnimeListResponse  {
+  season: SeasonalAnimeQuery,
+};
