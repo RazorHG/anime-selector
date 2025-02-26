@@ -42,16 +42,11 @@ export interface SeasonalAnimeResponse extends AnimeListResponse  {
 })
 export class MyAnimeListService {
   private httpClient = inject(HttpClient);
-  private clientID: string;
-  private headers: HttpHeaders;
-  private malURL = 'https://api.myanimelist.net/v2/anime/season/';
+  private url = 'https://0i4i346h5c.execute-api.us-east-2.amazonaws.com/getSeasonalAnime';
 
-  constructor(@Inject(SECRETS) secrets: Secrets) {
-    this.clientID = secrets.clientID;
-    this.headers = new HttpHeaders().set('X-MAL-CLIENT-ID', this.clientID);
-  }
+
   getSeasonalAnime(year: number, season: Seasons): Observable<SeasonalAnimeResponse> {
-    const url = `${this.malURL}${year}/${season}`;
-    return this.httpClient.get<SeasonalAnimeResponse>(url, { headers: this.headers });
+    const url = `${this.url}?year=${year}&season=${season}`;
+    return this.httpClient.get<SeasonalAnimeResponse>(url);
   }
 }
