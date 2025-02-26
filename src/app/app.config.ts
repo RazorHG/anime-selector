@@ -5,12 +5,12 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { routes } from './app.routes';
 import { provideHttpClient } from '@angular/common/http';
 import { Secrets, SECRETS } from './core/secrets.service';
-import { CLIENT_ID } from '../../secrets';
 import { MyAnimeListService } from './core/myanimelist.service';
 import { MockMyAnimeListService } from './core/myanimelist.service.mock';
+import { environment } from '../environments/environment';
 
 const MY_SECRETS: Secrets = {
-  clientID: CLIENT_ID,
+  clientID: environment.clientId,
 };
 
 export const appConfig: ApplicationConfig = {
