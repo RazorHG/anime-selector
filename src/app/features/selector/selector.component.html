@@ -1,0 +1,77 @@
+<div class="anime-selector" cdkDropListGroup>
+    <h2>Anime</h2>
+    <div
+        cdkDropList
+        [cdkDropListData]="unsortedItems"
+        (cdkDropListDropped)="drop($event)"
+        cdkDropListOrientation="horizontal"
+        class="unsorted-items"
+    >
+        @for (item of unsortedItems; track item) {
+            <mat-card cdkDrag class="example-card" appearance="outlined">
+                <mat-card-header>
+                <mat-card-title class="anime-card-title" >
+                    <a href="https://myanimelist.net/anime/{{ item.id }}" target="_blank">{{ item.title }}</a>
+                </mat-card-title>
+                </mat-card-header>
+                <img
+                    mat-card-image
+                    ngSrc="{{ item.main_picture.medium }}"
+                    alt="Image of {{ item.title }}"
+                    width="173"
+                    height="150"
+                >
+            </mat-card>
+        }
+    </div>
+    <h2>Smash</h2>
+    <div
+        cdkDropList
+        [cdkDropListData]="willWatchItems"
+        (cdkDropListDropped)="drop($event)"
+        cdkDropListOrientation="horizontal"
+        class="will-watch-items"
+    >
+        @for (item of willWatchItems; track item) {
+            <mat-card cdkDrag class="example-card" appearance="outlined">
+                <mat-card-header>
+                <mat-card-title class="anime-card-title" >
+                    <a href="https://myanimelist.net/anime/{{ item.id }}" target="_blank">{{ item.title }}</a>
+                </mat-card-title>
+                </mat-card-header>
+                <img
+                    mat-card-image
+                    ngSrc="{{ item.main_picture.medium }}"
+                    alt="Image of {{ item.title }}"
+                    width="173"
+                    height="150"
+                >
+            </mat-card>
+        }
+    </div>
+    <h2>Pass</h2>
+    <div
+        cdkDropList
+        [cdkDropListData]="wontWatchItems"
+        (cdkDropListDropped)="drop($event)"
+        cdkDropListOrientation="horizontal"
+        class="wont-watch-items"
+    >
+    @for (item of wontWatchItems; track item) {
+        <mat-card cdkDrag class="example-card" appearance="outlined">
+            <mat-card-header>
+              <mat-card-title class="anime-card-title" >
+                <a href="https://myanimelist.net/anime/{{ item.id }}" target="_blank">{{ item.title }}</a>
+            </mat-card-title>
+            </mat-card-header>
+            <img
+                mat-card-image
+                ngSrc="{{ item.main_picture.medium }}"
+                alt="Image of {{ item.title }}"
+                width="173"
+                height="150"
+            >
+          </mat-card>
+    }
+    </div>
+</div>
