@@ -1,0 +1,63 @@
+.example-card {
+    grid-column: 1;
+    grid-row: 1;
+    margin: 10px;
+    .anime-card-title {
+        font-size: small;
+    }
+}
+
+
+
+.anime-selector {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    flex-direction: row;
+    flex-wrap: wrap;
+    height: 70vh;
+}
+
+.unsorted-items {
+    display: grid;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    // overflow-y:hidden;
+    overflow-x: auto;
+    width: 70vw;
+    // max-height: 260px;
+}
+
+.wont-watch-items, .will-watch-items {
+    width: 15vw;
+    .example-custom-placeholder {
+        background: lightcoral;
+        transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+        height: 70vh;
+      }
+}
+
+.mobile-image {
+    object-fit: contain;
+}
+
+mat-card{
+    height: auto;
+}
+
+mat-card-header {
+    height: auto;
+}
+
+h2 {
+    margin-left: 5px;
+    color: azure;
+}
+
+a {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    overflow: hidden;
+}

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
-import { NgOptimizedImage } from '@angular/common'
+import { CommonModule, NgOptimizedImage } from '@angular/common'
 import {MatCardModule} from '@angular/material/card';
 import {
   CdkDragDrop,
@@ -8,32 +8,31 @@ import {
   CdkDropListGroup,
   moveItemInArray,
   transferArrayItem,
+  CdkDragPlaceholder,
 } from '@angular/cdk/drag-drop';
 import { AnimeBase } from '../../core/myanimelist.service';
 import { WatchlistService } from '../../core/watchlist.service';
-
-export interface SortedAnime {
-  willWatch: AnimeBase[],
-  wontWatch: AnimeBase[],
-}
+import { SortedAnime } from '../selector/selector.component';
 
 @Component({
-  selector: 'app-selector',
+  selector: 'app-mobile-selector',
   imports: [
+    CommonModule,
     CdkDrag,
     CdkDropList,
     CdkDropListGroup,
     MatCardModule,
     NgOptimizedImage,
+    CdkDragPlaceholder,
   ],
-  templateUrl: './selector.component.html',
-  styleUrl: './selector.component.scss'
+  templateUrl: './mobile-selector.component.html',
+  styleUrl: './mobile-selector.component.scss'
 })
-export class SelectorComponent {
+export class MobileSelectorComponent {
   @Input() unsortedItems: Array<AnimeBase> = [];
   @Output() sortedChangeEvent = new EventEmitter<SortedAnime>()
-  private watchListService = inject(WatchlistService);
   
+  private watchListService = inject(WatchlistService);
 
   willWatchItems: Array<AnimeBase> = this.watchListService.getWillWatch();
   wontWatchItems: Array<AnimeBase> = this.watchListService.getWontWatch();
@@ -56,4 +55,5 @@ export class SelectorComponent {
       wontWatch: this.wontWatchItems,
     });
   }
+
 }

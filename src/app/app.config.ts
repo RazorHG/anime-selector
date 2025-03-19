@@ -20,6 +20,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
     provideAnimationsAsync(),
     { provide: SECRETS, useValue: MY_SECRETS},
-    // { provide: MyAnimeListService, useClass: MockMyAnimeListService},
+    { provide: MyAnimeListService, useClass: MockMyAnimeListService},
   ],
 };
