@@ -1,6 +1,8 @@
 import { Component, inject, Inject } from '@angular/core';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { RouterOutlet } from '@angular/router';
 import { SelectorComponent, SortedAnime } from './features/selector/selector.component';
+import { MobileSelectorComponent } from './features/mobile-selector/mobile-selector.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,13 +10,14 @@ import {MatButtonModule} from '@angular/material/button';
 import { FormControl, FormGroup, FormsModule, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Seasons } from './core/seasons';
 import { AnimeBase, MyAnimeListService } from './core/myanimelist.service';
-import { TitleCasePipe } from '@angular/common';
+import { CommonModule, TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
     SelectorComponent,
+    MobileSelectorComponent,
     FormsModule,
     MatInputModule,
     MatSelectModule,
@@ -22,12 +25,26 @@ import { TitleCasePipe } from '@angular/common';
     MatButtonModule,
     TitleCasePipe,
     ReactiveFormsModule,
+    CommonModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
   private myAnimeListService = inject(MyAnimeListService);
+  protected useMobileView: boolean = false;
+
+  constructor(breakpointObserver: BreakpointObserver) {
+    breakpointObserver.isMatched(Breakpoints.XSmall);
+    breakpointObserver.observe([
+      Breakpoints.XSmall,
+      Breakpoints.Medium
+    ]).subscribe(result => {
+      if (result.matches) {
+        this.useMobileView = result.breakpoints[Breakpoints.XSmall];
+      }
+    });
+  }
 
   queryForm = new FormGroup({
     selectedYear: new FormControl<number>(2025, Validators.required),
@@ -73,7 +90,7 @@ export class AppComponent {
   }
 
   updateSortedAnime(event: SortedAnime) {
-    const updates = [ ...event.willWatch, ...event.wonWatch ];
+    const updates = [ ...event.willWatch, ...event.wontWatch ];
     console.log('updates', updates);
     this.queryForm.patchValue({ updates });
     this.queryForm.updateValueAndValidity();

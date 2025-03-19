@@ -19,6 +19,11 @@
   <button (click)="loadAnime()" mat-flat-button>Get Anime</button>
   <button [disabled]="queryForm.get('updates')?.hasError" (click)="saveAnime()" mat-flat-button>Save Anime to MAL</button>
 </form>
-<app-selector [ariaDisabled]="" [unsortedItems]="animeList" (sortedChangeEvent)="updateSortedAnime($event)" />
+<ng-container *ngIf="useMobileView; else desktopView" >
+  <app-mobile-selector [unsortedItems]="animeList" (sortedChangeEvent)="updateSortedAnime($event)" />
+</ng-container>
+<ng-template #desktopView>
+  <app-selector [unsortedItems]="animeList" (sortedChangeEvent)="updateSortedAnime($event)" />
+</ng-template>
 
 <router-outlet />
